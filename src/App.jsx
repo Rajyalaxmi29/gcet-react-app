@@ -8,7 +8,17 @@ function App() {
 
   return (
     <>
-      <h1>My Store</h1>
+     <header>
+    <h1>My online Shop</h1>
+     </header>
+     <hr/>
+     <main>
+    <h2>product</h2>
+     </main>
+     <hr/>
+     <footer>
+    @copy.write
+     </footer>
     </>
   )
 }
