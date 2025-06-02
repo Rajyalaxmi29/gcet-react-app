@@ -5,10 +5,10 @@ import { AppContext } from '../App';
 export default function Product() {
   const { user } = useContext(AppContext);
   const [products, setProducts] = useState([]);
-
+  const API = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    axios.get('http://localhost:8080/products')
+    axios.get(`${API}/products`)
       .then(response => {
         setProducts(response.data);
       })
