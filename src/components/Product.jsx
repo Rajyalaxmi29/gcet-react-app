@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { AppContext } from '../App'; // adjust the path if needed
+import { AppContext } from '../App'; 
 
 export default function Product() {
   const { user } = useContext(AppContext);
   const [products, setProducts] = useState([]);
 
-  // Fetch products from backend
+
   useEffect(() => {
     axios.get('http://localhost:8080/products')
       .then(response => {
