@@ -1,11 +1,12 @@
-import React from "react";
-
+import React from 'react'
+import { useContext } from 'react'
+import { AppContext } from '../App'
 export default function Product() {
-  const username = localStorage.getItem("user");
-
+  const {user} = useContext(AppContext)
   return (
-    <div style={{ textAlign: "center", marginTop: 50, fontSize: "20px" }}>
-      Welcome to the Online Store{username ? `, ${username}` : ""}
-    </div>
-  );
+    <div>
+      <h3>Welcome {user.name}!</h3>
+      Product List
+      </div>
+  )
 }
