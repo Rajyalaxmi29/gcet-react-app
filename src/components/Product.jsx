@@ -1,33 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
-import { AppContext } from '../App'; 
-
+import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AppContext } from "../App";
+import axios from "axios";
 export default function Product() {
   const { user } = useContext(AppContext);
   const [products, setProducts] = useState([]);
-  const API = import.meta.env.VITE_API_URL;
-
+    const API = import.meta.env.VITE_API_URL;
+  const fetchProducts = async () => {
+    const res = await axios.get(`${API}/products`);
+    setProducts(res.data);
+  };
   useEffect(() => {
-    axios.get(`${API}/products`)
-      .then(response => {
-        setProducts(response.data);
-      })
-      .catch(error => {
-        console.error("Error fetching products:", error);
-      });
+    fetchProducts();
   }, []);
-
   return (
     <div>
-      <h3>Welcome {user.name}!</h3>
-      <h4>Product List:</h4>
-      <ul>
-        {products.map(prod => (
-          <li key={prod.id}>
-            {prod.name} - ₹{prod.price}
-          </li>
-        ))}
-      </ul>
+      <h3>Welcome {user.name}! </h3>
+      Product List
+      {products && products.map((value) => <li>{value.name}</li>)}
     </div>
   );
 }
