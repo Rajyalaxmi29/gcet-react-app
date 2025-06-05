@@ -15,7 +15,6 @@ export default function Product() {
   }, []);
   return (
     <div>
-      <h3>Welcome {user.name}! </h3>
       Product List
       {products && products.map((value) => <li>{value.name}</li>)}
     </div>
