@@ -1,5 +1,3 @@
-// Product.jsx
-
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AppContext } from "../App";
@@ -25,7 +23,12 @@ export default function Product() {
       <h3>Welcome {user.name}!</h3>
       <div className="App-Product-Row">
         {products.map((value) => (
-          <div key={value._id}>
+          <div className="product-card" key={value._id}>
+            <img
+              src={value.imgUrl}
+              alt={value.name}
+              className="product-image"
+            />
             <h3>{value.name}</h3>
             <h4>₹{value.price}</h4>
             <button onClick={() => addToCart(value)}>Add to Cart</button>
@@ -33,10 +36,9 @@ export default function Product() {
         ))}
       </div>
       <br />
-    <button onClick={() => navigate("/cart")} className="btn">
-  🛒 Go to Cart
-</button>
-
+      <button onClick={() => navigate("/cart")} className="btn">
+        🛒 Go to Cart
+      </button>
     </div>
   );
 }
