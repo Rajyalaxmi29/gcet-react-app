@@ -1,3 +1,5 @@
+// App.jsx
+
 import { useState, createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Product from "./components/Product";
@@ -9,15 +11,19 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./App.css";
 
-// 🌐 Create global context
 export const AppContext = createContext();
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [user, setUser] = useState({}); // Logged-in user
+  const [user, setUser] = useState({});
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (product) => {
+    setCart((prev) => [...prev, product]);
+  };
 
   return (
-    <AppContext.Provider value={{ users, setUsers, user, setUser }}>
+    <AppContext.Provider value={{ users, setUsers, user, setUser, cart, addToCart }}>
       <BrowserRouter>
         <Header />
 

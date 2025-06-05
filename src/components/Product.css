@@ -1,11 +1,71 @@
+/* Product.css */
+
 .App-Product-Row {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
 }
 
-.App-Product-Row div {
-    padding: 5px;
-    margin: 5px;
-    border: 1px solid gray;
+.App-Product-Row > div {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.2s ease;
 }
+
+.App-Product-Row > div:hover {
+  transform: scale(1.05);
+}
+
+.App-Product-Row h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.App-Product-Row h4 {
+  font-size: 16px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+button {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #125a9c;
+}
+/* Add this to Product.css or App.css */
+.btn {
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 20px auto;       /* Auto margin centers it */
+  display: block;          /* Required for margin auto to work */
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #125a9c;
+  transform: translateY(-2px);
+}
+

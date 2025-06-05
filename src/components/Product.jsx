@@ -1,37 +1,42 @@
-import React, { useEffect, useState } from "react";
-import { useContext } from "react";
-import { AppContext } from "../App";
-import axios from "axios";
-import "./Product.css"
-export default function Product() {
-  const { user } = useContext(AppContext);
-  const [products, setProducts] = useState([]);
-  const API = import.meta.env.VITE_API_URL;
-  const fetchProducts = async () => {
-    
-    //const res = await axios.get(`${API}/products/all`);
-    const res = await axios.get(`https://gcet-node-app-lake.vercel.app/products/all`);
-    console.log(res.data);
+// Product.jsx
 
+import React, { useEffect, useState, useContext } from "react";
+import axios from "axios";
+import { AppContext } from "../App";
+import { useNavigate } from "react-router-dom";
+import "./Product.css";
+
+export default function Product() {
+  const { user, addToCart } = useContext(AppContext);
+  const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+
+  const fetchProducts = async () => {
+    const res = await axios.get(`https://gcet-node-app-lake.vercel.app/products/all`);
     setProducts(res.data);
   };
+
   useEffect(() => {
-   
     fetchProducts();
   }, []);
+
   return (
     <div>
-      <h3>Welcome {user.name}! </h3>
+      <h3>Welcome {user.name}!</h3>
       <div className="App-Product-Row">
-        {products &&
-          products.map((value) => (
-            <div key={value._id}>
-              <h3>{value.name}</h3>
-              <h4>{value.price}</h4>
-              <button>Add to Cart</button>
-            </div>
-          ))}
+        {products.map((value) => (
+          <div key={value._id}>
+            <h3>{value.name}</h3>
+            <h4>₹{value.price}</h4>
+            <button onClick={() => addToCart(value)}>Add to Cart</button>
+          </div>
+        ))}
       </div>
+      <br />
+    <button onClick={() => navigate("/cart")} className="btn">
+  🛒 Go to Cart
+</button>
+
     </div>
   );
 }

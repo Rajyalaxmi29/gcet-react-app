@@ -1,0 +1,30 @@
+/* Header.css */
+
+.header {
+  background-color: #1976d2;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Segoe UI", sans-serif;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 500;
+  font-size: 16px;
+  transition: opacity 0.3s ease;
+}
+
+.nav a:hover {
+  opacity: 0.8;
+}
