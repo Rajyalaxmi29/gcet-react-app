@@ -18,6 +18,7 @@ export default function Header() {
         ) : (
           <Link to="/login">Login</Link>
         )}
+        <Link to="/orders">Orders</Link>
       </nav>
     </header>
   );

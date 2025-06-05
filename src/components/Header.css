@@ -28,3 +28,22 @@
 .nav a:hover {
   opacity: 0.8;
 }
+.header {
+  background-color: #222;
+  padding: 10px 20px;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
