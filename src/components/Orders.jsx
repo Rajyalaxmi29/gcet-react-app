@@ -45,13 +45,23 @@ export default function Orders() {
               key={order._id}
               style={{
                 border: "1px solid #ccc",
-                padding: "10px",
-                marginBottom: "10px",
+                padding: "15px",
+                marginBottom: "15px",
                 borderRadius: "8px",
+                backgroundColor: "#f9f9f9",
               }}
             >
               <p><strong>Email:</strong> {order.email}</p>
               <p><strong>Order Value:</strong> ₹{order.orderValue}</p>
+              <p><strong>Items:</strong></p>
+              <ul>
+                {order.items?.map((item, i) => (
+                  <li key={i}>
+                    {item.name} - ₹{item.price} × {item.quantity}
+                  </li>
+                ))}
+              </ul>
+              <small><strong>Ordered At:</strong> {new Date(order.createdAt).toLocaleString()}</small>
             </li>
           ))}
         </ul>

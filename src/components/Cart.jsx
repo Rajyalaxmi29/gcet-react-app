@@ -13,6 +13,20 @@ export default function Cart() {
     0
   );
 
+  const incrementQty = (index) => {
+    const updatedCart = [...cart];
+    updatedCart[index].quantity += 1;
+    setCart(updatedCart);
+  };
+
+  const decrementQty = (index) => {
+    const updatedCart = [...cart];
+    if (updatedCart[index].quantity > 1) {
+      updatedCart[index].quantity -= 1;
+      setCart(updatedCart);
+    }
+  };
+
   const placeOrder = async () => {
     if (!user || !user.email) {
       alert("Please login to place your order");
@@ -21,15 +35,14 @@ export default function Cart() {
     }
 
     try {
-      // Updated POST request with items field
       await axios.post("https://gcet-node-app-lake.vercel.app/orders/new", {
         email: user.email,
         orderValue: totalOrderValue,
-        items: cart, // include cart items
+        items: cart,
       });
 
-      setCart([]); // Clear cart after placing order
-      navigate("/orders"); // Redirect to orders page
+      setCart([]);
+      navigate("/orders");
     } catch (err) {
       console.error("Error placing order", err);
       alert("Failed to place order");
@@ -46,10 +59,18 @@ export default function Cart() {
           <ul className="cart-list">
             {cart.map((item, index) => (
               <li className="cart-item" key={index}>
-                <h4>{item.name}</h4>
-                <p>Price: ₹{item.price}</p>
-                <p>Quantity: {item.quantity}</p>
-                <p>Subtotal: ₹{item.price * item.quantity}</p>
+                <div className="cart-item-content">
+                  <div>
+                    <h4>{item.name}</h4>
+                    <p>Price: ₹{item.price}</p>
+                    <p>Subtotal: ₹{(item.price * item.quantity).toFixed(2)}</p>
+                  </div>
+                  <div className="qty-controls">
+                    <button onClick={() => decrementQty(index)}>-</button>
+                    <span>{item.quantity}</span>
+                    <button onClick={() => incrementQty(index)}>+</button>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
