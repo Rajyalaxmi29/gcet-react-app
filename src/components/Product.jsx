@@ -10,8 +10,12 @@ export default function Product() {
   const navigate = useNavigate();
 
   const fetchProducts = async () => {
-    const res = await axios.get(`https://gcet-node-app-lake.vercel.app/products/all`);
-    setProducts(res.data);
+    try {
+      const res = await axios.get("https://gcet-node-app-lake.vercel.app/products/all");
+      setProducts(res.data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
   };
 
   useEffect(() => {
@@ -19,24 +23,28 @@ export default function Product() {
   }, []);
 
   return (
-    <div>
-      <h3>Welcome {user.name}!</h3>
-      <div className="App-Product-Row">
-        {products.map((value) => (
-          <div className="product-card" key={value._id}>
+    <div className="product-container">
+      <h2 className="welcome">Welcome {user?.name || "Guest"}!</h2>
+      
+      <div className="product-grid">
+        {products.map((item) => (
+          <div className="product-card" key={item._id}>
             <img
-              src={value.imgUrl}
-              alt={value.name}
+              src={item.imgUrl || "https://via.placeholder.com/150"}
+              alt={item.name}
               className="product-image"
             />
-            <h3>{value.name}</h3>
-            <h4>₹{value.price}</h4>
-            <button onClick={() => addToCart(value)}>Add to Cart</button>
+            <h3 className="product-title">{item.name}</h3>
+            <p className="product-desc">{item.description}</p>
+            <h4 className="product-price">₹{item.price}</h4>
+            <button className="add-cart-btn" onClick={() => addToCart(item)}>
+              ➕ Add to Cart
+            </button>
           </div>
         ))}
       </div>
-      <br />
-      <button onClick={() => navigate("/cart")} className="btn">
+
+      <button className="go-cart-btn" onClick={() => navigate("/cart")}>
         🛒 Go to Cart
       </button>
     </div>
