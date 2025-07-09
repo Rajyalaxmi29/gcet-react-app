@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Orders.css";
+
 
 export default function Orders() {
   const { user } = useContext(AppContext);
